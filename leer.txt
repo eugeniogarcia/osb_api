@@ -1,0 +1,4 @@
+Incluir esta cabecera para consumir una managad Api
+X-API-KEY
+eb10dfde-f958-4d72-bf9c-fd1bf1d76a22
+56135a0a-2515-4f0c-81c9-921fd957ca8b
