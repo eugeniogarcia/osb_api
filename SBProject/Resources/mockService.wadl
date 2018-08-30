@@ -1,0 +1,109 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="mockService">RestService</doc>
+   <resources>
+      <resource path="/">
+         <method name="GET" soa:name="Greetings">
+            <request>
+               <param name="user" style="query" type="xsd:string">
+                  <doc title="user">Your user name</doc>
+               </param>
+            </request>
+            <response>
+               <representation mediaType="text/plain"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+      <resource path="/auth">
+         <method name="GET" soa:name="Validate">
+            <doc title="GET Validate">Validate access using basic authentication</doc>
+            <request/>
+            <response>
+               <representation mediaType="application/json"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+      <resource path="/echo">
+         <method name="GET" soa:name="View">
+            <doc title="GET View">View request headers and body</doc>
+            <request/>
+            <response>
+               <representation mediaType="application/json"/>
+            </response>
+            <response/>
+         </method>
+         <method name="POST" soa:name="Update">
+            <doc title="POST Update">Send request and view request headers and body</doc>
+            <request>
+               <representation mediaType="application/xml"/>
+               <representation mediaType="application/json"/>
+               <representation mediaType="application/x-www-form-urlencoded"/>
+            </request>
+            <response>
+               <representation mediaType="application/xml"/>
+               <representation mediaType="application/json"/>
+               <representation mediaType="application/x-www-form-urlencoded"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+      <resource path="/ip">
+         <method name="GET" soa:name="view_ip">
+            <doc title="GET view_ip">View IP address</doc>
+            <request/>
+            <response>
+               <representation mediaType="application/json"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+      <resource path="/json">
+         <method name="GET" soa:name="ViewJSON">
+            <doc title="GET ViewJSON">View JSON response</doc>
+            <request/>
+            <response>
+               <representation mediaType="application/json"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+      <resource path="/statuscode/{code}">
+         <method name="GET" soa:name="GetHttpCode">
+            <request>
+               <param name="code" style="template" type="xsd:string">
+                  <doc title="code">HTTP status code</doc>
+               </param>
+            </request>
+            <response>
+               <representation mediaType="application/json"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+      <resource path="/user">
+         <method name="GET" soa:name="PersonalizedGreeting">
+            <request>
+               <param name="user" style="query" type="xsd:string">
+                  <doc title="user">Your user name</doc>
+               </param>
+            </request>
+            <response>
+               <representation mediaType="text/plain"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+      <resource path="/xml">
+         <method name="GET" soa:name="ViewXML">
+            <doc title="GET ViewXML">View XML response</doc>
+            <request/>
+            <response>
+               <representation mediaType="application/xml"/>
+            </response>
+            <response/>
+         </method>
+      </resource>
+   </resources>
+</application>

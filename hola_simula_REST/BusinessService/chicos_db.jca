@@ -1,0 +1,52 @@
+<adapter-config name="chicos" adapter="db" wsdlLocation="chicos.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="laboratorio" location="eis/DB/laboratorio"/>
+  <endpoint-interaction portType="chicos_ptt" operation="insert">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="chicos.Chicos"/>
+      <property name="DmlType" value="insert"/>
+      <property name="MappingsMetaDataURL" value="chicos-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+      <property name="DetectOmissions" value="true"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+  <endpoint-interaction portType="chicos_ptt" operation="update">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="chicos.Chicos"/>
+      <property name="DmlType" value="update"/>
+      <property name="MappingsMetaDataURL" value="chicos-or-mappings.xml"/>
+      <property name="DetectOmissions" value="true"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+  <endpoint-interaction portType="chicos_ptt" operation="delete">
+    <interaction-spec className="oracle.tip.adapter.db.DBWriteInteractionSpec">
+      <property name="DescriptorName" value="chicos.Chicos"/>
+      <property name="DmlType" value="delete"/>
+      <property name="MappingsMetaDataURL" value="chicos-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+  <endpoint-interaction portType="chicos_ptt" operation="chicosSelect">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="chicos.Chicos"/>
+      <property name="QueryName" value="chicosSelect"/>
+      <property name="MappingsMetaDataURL" value="chicos-or-mappings.xml"/>
+      <property name="ReturnSingleResultSet" value="false"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+  <endpoint-interaction portType="chicos_ptt" operation="selectByPrimaryKey">
+    <interaction-spec className="oracle.tip.adapter.db.DBReadInteractionSpec">
+      <property name="DescriptorName" value="chicos.Chicos"/>
+      <property name="QueryName" value="readObject"/>
+      <property name="MappingsMetaDataURL" value="chicos-or-mappings.xml"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

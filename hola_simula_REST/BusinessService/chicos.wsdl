@@ -1,0 +1,48 @@
+<wsdl:definitions
+     name="chicos"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/osbREST/hola_simula_REST/chicos"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/osbREST/hola_simula_REST/chicos"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/chicos"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="chicos_plt" >
+    <plt:role name="chicos_role" >
+      <plt:portType name="tns:chicos_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/chicos" schemaLocation="chicos_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="chicosSelect_inputParameters">
+        <wsdl:part name="chicosSelect_inputParameters" element="top:chicosSelectInputParameters"/>
+    </wsdl:message>
+    <wsdl:message name="selectByPrimaryKey_inputParameters">
+        <wsdl:part name="selectByPrimaryKey_inputParameters" element="top:ChicosPrimaryKey"/>
+    </wsdl:message>
+    <wsdl:message name="ChicosCollection_msg">
+        <wsdl:part name="ChicosCollection" element="top:ChicosCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="chicos_ptt">
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:ChicosCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="update">
+            <wsdl:input message="tns:ChicosCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="delete">
+            <wsdl:input message="tns:ChicosCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="chicosSelect">
+            <wsdl:input message="tns:chicosSelect_inputParameters"/>
+            <wsdl:output message="tns:ChicosCollection_msg"/>
+        </wsdl:operation>
+        <wsdl:operation name="selectByPrimaryKey">
+            <wsdl:input message="tns:selectByPrimaryKey_inputParameters"/>
+            <wsdl:output message="tns:ChicosCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

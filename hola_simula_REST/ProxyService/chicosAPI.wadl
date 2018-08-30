@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<application xmlns:soa="http://www.oracle.com/soa/rest" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns0="http://TargetNamespace.com/chicosAPI_getChicos_response" xmlns="http://wadl.dev.java.net/2009/02">
+   <doc title="chicosAPI">RestService</doc>
+   <grammars>
+      <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://TargetNamespace.com/chicosAPI_getChicos_response" schemaLocation="chicos.xsd"/>
+        </xsd:schema>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/osbREST/hola_simula_REST/chicosAPI" elementFormDefault="qualified">
+            <element name="getChico_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="borraChico_params">
+                <complexType>
+                    <sequence>
+                        <element name="id" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </schema>
+   </grammars>
+   <resources>
+      <resource path="/chicos">
+         <method name="GET" soa:wsdlOperation="getChicos">
+            <request/>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+            </response>
+         </method>
+         <method name="POST" soa:wsdlOperation="createChico">
+            <request>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+               <representation mediaType="application/xml" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+            </response>
+         </method>
+         <method name="PUT" soa:wsdlOperation="actualizaChicos">
+            <request>
+               <representation mediaType="application/xml" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+            </response>
+         </method>
+      </resource>
+      <resource path="/chicos/{id}">
+         <method name="GET" soa:wsdlOperation="getChico">
+            <request soa:paramElement="pns:getChico_params" xmlns:pns="http://xmlns.oracle.com/osbREST/hola_simula_REST/chicosAPI">
+               <param name="id" style="template" soa:expression="$msg.request/pns:id" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+            </response>
+         </method>
+         <method name="DELETE" soa:wsdlOperation="borraChico">
+            <request soa:paramElement="pns:borraChico_params" xmlns:pns="http://xmlns.oracle.com/osbREST/hola_simula_REST/chicosAPI">
+               <param name="id" style="template" soa:expression="$msg.request/pns:id" type="xsd:string"/>
+            </request>
+            <response status="200">
+               <representation mediaType="application/xml" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+               <representation mediaType="application/json" element="cns:Root-Element" xmlns:cns="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+            </response>
+         </method>
+      </resource>
+   </resources>
+</application>

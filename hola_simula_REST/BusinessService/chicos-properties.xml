@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <entry key="CHICOS.APODO:db_column_not_null">false</entry>
+   <entry key="CHICOS.APODO:db_column_size">10</entry>
+   <entry key="CHICOS.ID:db_column_not_null">true</entry>
+   <entry key="CHICOS.NOMBRE:db_column_not_null">true</entry>
+   <entry key="CHICOS.ID:db_column_precision">38</entry>
+   <entry key="CHICOS.ID:db_column_type">NUMBER</entry>
+   <entry key="CHICOS.NOMBRE:db_column_type">VARCHAR2</entry>
+   <entry key="CHICOS:db_table_type">TABLE</entry>
+   <entry key="return_single_result_set">false</entry>
+   <entry key="CHICOS:db_column_2">APODO</entry>
+   <entry key="CHICOS:db_column_1">NOMBRE</entry>
+   <entry key="CHICOS.NOMBRE:db_column_size">20</entry>
+   <entry key="CHICOS:db_column_0">ID</entry>
+   <entry key="root_descriptor_alias">CHICOS</entry>
+   <entry key="CHICOS.APODO:db_column_type">VARCHAR2</entry>
+   <entry key="CHICOS.ID:db_column_scale">0</entry>
+</properties>

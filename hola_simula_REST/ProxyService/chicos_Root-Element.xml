@@ -1,0 +1,7 @@
+<Root-Element xmlns="http://TargetNamespace.com/chicosAPI_getChicos_response">
+   <Chicos>
+      <id>22</id>
+      <nombre>nombre23</nombre>
+      <apodo>apodo24</apodo>
+   </Chicos>
+</Root-Element>

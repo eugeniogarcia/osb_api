@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="hola_simula_REST/ProxyService/chicosAPI"/>
+            <con:binding>
+                <con:name>chicosAPI_ptt-binding</con:name>
+                <con:namespace>http://xmlns.oracle.com/osbREST/hola_simula_REST/chicosAPI</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:flow>
+            <con:branch-node type="operation" id="_FlowId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f6b" name="BranchNode1">
+                <con:context/>
+                <con:branch-table>
+                    <con:branch name="getChicos">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="lista los chicos">
+                                <con:context>
+                                    <con1:userNsDecl prefix="chic" namespace="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f66</con1:id>
+                                        <con2:service ref="hola_simula_REST/chicos" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>chicosSelect</con2:operation>
+                                        <con2:outboundTransform/>
+                                        <con2:responseTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f53</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryTransform>
+                                                        <con1:resource ref="hola_simula_REST/Resources/ChicosBDaAPI"/>
+                                                        <con1:param name="chicosBD">
+                                                            <con1:path>$body/*</con1:path>
+                                                        </con1:param>
+                                                    </con1:xqueryTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="createChico">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="crea un chico">
+                                <con:context>
+                                    <con1:userNsDecl prefix="chic" namespace="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f62</con1:id>
+                                        <con2:service ref="hola_simula_REST/chicos" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>insert</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f3c</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryTransform>
+                                                        <con1:resource ref="hola_simula_REST/Resources/ChicosEntrada"/>
+                                                        <con1:param name="entrada">
+                                                            <con1:path>$body/chic:Root-Element</con1:path>
+                                                        </con1:param>
+                                                    </con1:xqueryTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f4e</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryTransform>
+                                                        <con1:resource ref="hola_simula_REST/Resources/ChicosBDaAPI"/>
+                                                        <con1:param name="chicosBD">
+                                                            <con1:path>$body/*</con1:path>
+                                                        </con1:param>
+                                                    </con1:xqueryTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="actualizaChicos">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="actualiza un chico">
+                                <con:context>
+                                    <con1:userNsDecl prefix="chic" namespace="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f5e</con1:id>
+                                        <con2:service ref="hola_simula_REST/chicos" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>update</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f39</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryTransform>
+                                                        <con1:resource ref="hola_simula_REST/Resources/ChicosEntrada"/>
+                                                        <con1:param name="entrada">
+                                                            <con1:path>$body/chic:Root-Element</con1:path>
+                                                        </con1:param>
+                                                    </con1:xqueryTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f4b</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryTransform>
+                                                        <con1:resource ref="hola_simula_REST/Resources/ChicosBDaAPI"/>
+                                                        <con1:param name="chicosBD">
+                                                            <con1:path>$body/*</con1:path>
+                                                        </con1:param>
+                                                    </con1:xqueryTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="getChico">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="obtiene un chico">
+                                <con:context>
+                                    <con1:userNsDecl prefix="chic" namespace="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+                                    <con1:userNsDecl prefix="chic1" namespace="http://xmlns.oracle.com/osbREST/hola_simula_REST/chicosAPI"/>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f5a</con1:id>
+                                        <con2:service ref="hola_simula_REST/chicos" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>selectByPrimaryKey</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f42</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryText>&lt;chic:ChicosPrimaryKey xmlns:chic="http://xmlns.oracle.com/pcbpel/adapter/db/top/chicos">
+&lt;chic:id>{fn:number($body/chic1:getChico_params/chic1:id)}&lt;/chic:id>
+&lt;/chic:ChicosPrimaryKey></con1:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f48</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryTransform>
+                                                        <con1:resource ref="hola_simula_REST/Resources/ChicosBDaAPI"/>
+                                                        <con1:param name="chicosBD">
+                                                            <con1:path>$body/*</con1:path>
+                                                        </con1:param>
+                                                    </con1:xqueryTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:branch name="borraChico">
+                        <con:operator>equals</con:operator>
+                        <con:value/>
+                        <con:flow>
+                            <con:route-node name="borra un chico">
+                                <con:context>
+                                    <con1:userNsDecl prefix="chic" namespace="http://TargetNamespace.com/chicosAPI_getChicos_response"/>
+                                    <con1:userNsDecl prefix="chic1" namespace="http://xmlns.oracle.com/osbREST/hola_simula_REST/chicosAPI"/>
+                                </con:context>
+                                <con:actions>
+                                    <con2:route>
+                                        <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f56</con1:id>
+                                        <con2:service ref="hola_simula_REST/chicos" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                                        <con2:operation>delete</con2:operation>
+                                        <con2:outboundTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f3f</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryText><![CDATA[<chic:ChicosCollection xmlns:chic="http://xmlns.oracle.com/pcbpel/adapter/db/top/chicos">
+<chic:Chicos>
+<chic:id>{fn:number($body/chic1:borraChico_params/chic1:id)}</chic:id>
+</chic:Chicos>
+</chic:ChicosCollection>]]></con1:xqueryText>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:outboundTransform>
+                                        <con2:responseTransform>
+                                            <con3:replace varName="body" contents-only="true">
+                                                <con1:id>_ActionId-N3f57ffd8.N5ec966fb.0.16585dcc968.N7f45</con1:id>
+                                                <con3:expr>
+                                                    <con1:xqueryTransform>
+                                                        <con1:resource ref="hola_simula_REST/Resources/ChicosBDaAPI"/>
+                                                        <con1:param name="chicosBD">
+                                                            <con1:path>$body/*</con1:path>
+                                                        </con1:param>
+                                                    </con1:xqueryTransform>
+                                                </con3:expr>
+                                            </con3:replace>
+                                        </con2:responseTransform>
+                                    </con2:route>
+                                </con:actions>
+                            </con:route-node>
+                        </con:flow>
+                    </con:branch>
+                    <con:default-branch>
+                        <con:flow/>
+                    </con:default-branch>
+                </con:branch-table>
+            </con:branch-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>
