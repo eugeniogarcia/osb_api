@@ -2,3 +2,18 @@ Incluir esta cabecera para consumir una managad Api
 X-API-KEY
 eb10dfde-f958-4d72-bf9c-fd1bf1d76a22
 56135a0a-2515-4f0c-81c9-921fd957ca8b
+
+Acceder al servicio
+http://localhost:7005/hola_simula_REST/chicosAPI/chicos/
+
+Acceder a los recursos, WSDL y WADL
+http://localhost:7005/sbresource?WADL/hola_simula_REST/ProxyService/chicosAPI
+http://localhost:7005/sbresource?WSDL/hola_simula_REST/ProxyService/chicosAPI
+
+Acceder el WSDL del Business Services
+http://localhost:7005/sbresource?WSDL/hola_simula_REST/BusinessService/chicos-concrete
+
+
+
+api-spec-converter --from=wadl --to=swagger_2 http://localhost:7005/sbresource?WADL/hola_simula_REST/ProxyService/chicosAPI
+api-spec-converter http://localhost:7005/sbresource?WADL/hola_simula_REST/ProxyService/chicosAPI --from=wadl --to=swagger_2 
